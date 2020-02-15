@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,13 @@ namespace TravelProject.Models
     public class Tours
     {
         public int Id { get; set; }
-        public int Place_id { get; set; }
-        public int Transporter_id { get; set; }
+        [ForeignKey("Place")]
+        public int Place_Id { get; set; }
+        public virtual Place Place { get; set; }
+
+        [ForeignKey("Transporter")]
+        public int Transporter_Id { get; set; }
+        public virtual Transporter Transporter { get; set; }
         public string Titile { get; set; }
         public string Description { get; set; }
         public string Quantity_people { get; set; }

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TravelProject.Models
 {
-    public class TravelProjectContext : DbContext
+    public class TravelProjectContextCheckingNow : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,10 +15,14 @@ namespace TravelProject.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public TravelProjectContext() : base("name=TravelProjectContext")
+        public TravelProjectContextCheckingNow() : base("name=TravelProjectContextCheckingNow")
         {
         }
 
         public System.Data.Entity.DbSet<TravelProject.Models.Place> Places { get; set; }
+
+        public System.Data.Entity.DbSet<TravelProject.Models.Transporter> Transporters { get; set; }
+
+        public System.Data.Entity.DbSet<TravelProject.Models.Tours> Tours { get; set; }
     }
 }

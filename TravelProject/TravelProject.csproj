@@ -198,13 +198,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
+    <Compile Include="Controllers\TransportersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\Tours.cs" />
     <Compile Include="Models\Transporter.cs" />
-    <Compile Include="Models\TravelProjectContext.cs" />
+    <Compile Include="Models\TravelProjectContextCheckingNow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +250,16 @@
     <Content Include="Views\Places\Details.cshtml" />
     <Content Include="Views\Places\Edit.cshtml" />
     <Content Include="Views\Places\Index.cshtml" />
+    <Content Include="Views\Transporters\Create.cshtml" />
+    <Content Include="Views\Transporters\Delete.cshtml" />
+    <Content Include="Views\Transporters\Details.cshtml" />
+    <Content Include="Views\Transporters\Edit.cshtml" />
+    <Content Include="Views\Transporters\Index.cshtml" />
+    <Content Include="Views\Tours\Create.cshtml" />
+    <Content Include="Views\Tours\Delete.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
+    <Content Include="Views\Tours\Edit.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

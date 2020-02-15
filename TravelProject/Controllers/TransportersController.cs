@@ -10,107 +10,107 @@ using TravelProject.Models;
 
 namespace TravelProject.Controllers
 {
-    public class PlacesController : Controller
+    public class TransportersController : Controller
     {
         private TravelProjectContextCheckingNow db = new TravelProjectContextCheckingNow();
 
-        // GET: Places
+        // GET: Transporters
         public ActionResult Index()
         {
-            return View(db.Places.ToList());
+            return View(db.Transporters.ToList());
         }
 
-        // GET: Places/Details/5
+        // GET: Transporters/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Place place = db.Places.Find(id);
-            if (place == null)
+            Transporter transporter = db.Transporters.Find(id);
+            if (transporter == null)
             {
                 return HttpNotFound();
             }
-            return View(place);
+            return View(transporter);
         }
 
-        // GET: Places/Create
+        // GET: Transporters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Places/Create
+        // POST: Transporters/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Localtion,starts")] Place place)
+        public ActionResult Create([Bind(Include = "Id,Title,Image")] Transporter transporter)
         {
             if (ModelState.IsValid)
             {
-                db.Places.Add(place);
+                db.Transporters.Add(transporter);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(place);
+            return View(transporter);
         }
 
-        // GET: Places/Edit/5
+        // GET: Transporters/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Place place = db.Places.Find(id);
-            if (place == null)
+            Transporter transporter = db.Transporters.Find(id);
+            if (transporter == null)
             {
                 return HttpNotFound();
             }
-            return View(place);
+            return View(transporter);
         }
 
-        // POST: Places/Edit/5
+        // POST: Transporters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Localtion,starts")] Place place)
+        public ActionResult Edit([Bind(Include = "Id,Title,Image")] Transporter transporter)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(place).State = EntityState.Modified;
+                db.Entry(transporter).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(place);
+            return View(transporter);
         }
 
-        // GET: Places/Delete/5
+        // GET: Transporters/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Place place = db.Places.Find(id);
-            if (place == null)
+            Transporter transporter = db.Transporters.Find(id);
+            if (transporter == null)
             {
                 return HttpNotFound();
             }
-            return View(place);
+            return View(transporter);
         }
 
-        // POST: Places/Delete/5
+        // POST: Transporters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Place place = db.Places.Find(id);
-            db.Places.Remove(place);
+            Transporter transporter = db.Transporters.Find(id);
+            db.Transporters.Remove(transporter);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

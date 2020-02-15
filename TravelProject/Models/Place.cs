@@ -12,6 +12,6 @@ namespace TravelProject.Models
         public string Description { get; set; }
         public string Localtion { get; set; }
         public int starts { get; set; }
-
+        public ICollection<Tours> Tours { get; set; }
     }
 }
