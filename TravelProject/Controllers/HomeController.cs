@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelProject.Models;
 
 namespace TravelProject.Controllers
 {
@@ -26,5 +28,15 @@ namespace TravelProject.Controllers
 
             return View();
         }
+
+
+        public JsonResult GetSearchValue(string search)
+        {
+            TravelProjectContextCheckingNow db = new TravelProjectContextCheckingNow();
+            List<Place> allsearch = db.Places.Where(x => x.Title.Contains(search)).ToList();
+            return new JsonResult { Data = allsearch, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+
     }
 }

@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Tours</h4>
         <hr />
@@ -18,8 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Place_Id, "Place_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Place_Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Place_Id, "", new { @class = "text-danger" })
+                <input class="form-control" id="searchInput" name="searchInput" />
             </div>
         </div>
 
@@ -108,5 +107,27 @@
 </div>
 
 @section Scripts {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $("#searchInput").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '@Url.Action("GetSearchValue","Home")',
+                dataType: "json",
+                data: { search: $("#searchInput").val() },
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.Title, value: item.Title };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                }
+            });
+        }
+    });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

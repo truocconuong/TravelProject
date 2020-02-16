@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TravelProject.Models;
+using System.Web.Script.Serialization;
 
 namespace TravelProject.Controllers
 {
@@ -49,10 +51,13 @@ namespace TravelProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Place_Id,Transporter_Id,Titile,Description,Quantity_people,Price,Time_start,Time_end,Duration,Time_departure")] Tours tours)
+        public ActionResult Create(FormCollection collection, [Bind(Include = "Id,Place_Id,Transporter_Id,Titile,Description,Quantity_people,Price,Time_start,Time_end,Duration,Time_departure")] Tours tours)
         {
+            var namePlace = collection.Get("searchInput");
+            var searchIdPlace = db.Places.Where(x => x.Title.Contains(namePlace)).First();
             if (ModelState.IsValid)
             {
+                tours.Place_Id = searchIdPlace.Id;
                 db.Tours.Add(tours);
                 db.SaveChanges();
                 return RedirectToAction("Index");
